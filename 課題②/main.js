@@ -3,10 +3,10 @@
  document.querySelector("form").addEventListener("submit", e => {
     e.preventDefault();
 
-    const Fizz = document.myform.Fizz.value
-    const Buzz = document.myform.Buzz.value
+    const Fizz =  parseInt(document.myform.Fizz.value)
+    const Buzz =  parseInt(document.myform.Buzz.value)
     
-    
+    parseInt()
     const result = [];
         
     if(Number.isInteger(Fizz) && Number.isInteger(Buzz)){
