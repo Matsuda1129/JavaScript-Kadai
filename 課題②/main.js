@@ -3,8 +3,8 @@
  document.querySelector("form").addEventListener("submit", e => {
     e.preventDefault();
 
-    const Fizz =  parseInt(document.myform.Fizz.value)
-    const Buzz =  parseInt(document.myform.Buzz.value)
+    const Fizz =  parseFloat(document.myform.Fizz.value)
+    const Buzz =  parseFloat(document.myform.Buzz.value)
     
     parseInt()
     const result = [];
