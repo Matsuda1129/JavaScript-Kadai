@@ -10,7 +10,6 @@
      const box2 = document.getElementById("box2");
      const comment = document.createElement("div");
      comment.textContent= message;
-     
      box2.appendChild(comment);
 
      
@@ -24,9 +23,9 @@
     
      const box3 = document.getElementById("box3");
      const status = document.createElement("div");
-      status.appendChild(addButton1);
-      status.appendChild(addButton2);
-       box3.appendChild(status);
+     status.appendChild(addButton1);
+     status.appendChild(addButton2);
+     box3.appendChild(status);
 
       
        
