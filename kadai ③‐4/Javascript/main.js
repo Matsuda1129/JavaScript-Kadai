@@ -46,7 +46,13 @@
       container.appendChild(tr);
       const th1 = document.createElement("th");
       const th2 = document.createElement("th");
-      th1.textContent = `${index}`;
+      list.id = index; 
+      // const id =list[index].id
+      // const idtext = id.innerHTML;
+      // th1.appendChild(idtext);
+      // th1.textContent = `${index}`;
+      // th1.textContent = `${list[index].id}`;
+      th1.textContent = list.id;
       th2.textContent = `${list[index].content}`;
       tr.appendChild(th1);
       tr.appendChild(th2);
@@ -72,6 +78,11 @@
       addButton1.addEventListener("click", event => {
         workingTodo(index);
       });
+      // list.forEach((todo, index) => {
+      //   list.id = index; 
+      // });
+
+      console.log(list);
     });
 
     // 作成ボタンの関数
@@ -95,6 +106,8 @@
     }
 
     // ラジオボタン各種の動き
+
+    // ラジオボタンすべての動き
     const all = document.getElementById("all");
     all.addEventListener("click", event => {
       deleteall();
@@ -102,36 +115,41 @@
       showTodo();
     });
 
+    // ラジオボタン作業中の動き
     const working = document.getElementById("working");
     working.addEventListener("click", event => {
       const workings = list.filter(item => item.state === '作業中')
-      deleteall();
-      title();
-      workings.forEach((content, index) => {
-        const tr = document.createElement("tr");
-        container.appendChild(tr);
-        const th1 = document.createElement("th");
-        const th2 = document.createElement("th");
-        th1.textContent = `${index}`;
-        th2.textContent = `${workings[index].content}`;
-        tr.appendChild(th1);
-        tr.appendChild(th2);
+      // deleteall();
+      // title();
+      // workings.forEach((content, index) => {
+      //   const tr = document.createElement("tr");
+      //   container.appendChild(tr);
+      //   const th1 = document.createElement("th");
+      //   const th2 = document.createElement("th");
+      //   // th1.textContent = `${index}`;
+      //   th1.textContent = list.id;
+      //   th2.textContent = `${workings[index].content}`;
+      //   tr.appendChild(th1);
+      //   tr.appendChild(th2);
 
-        const addButton1 = document.createElement("input");
-        addButton1.value = workings[index].state;
-        addButton1.type = "button"
+      //   const addButton1 = document.createElement("input");
+      //   addButton1.value = workings[index].state;
+      //   addButton1.type = "button"
 
-        const addButton2 = document.createElement("input");
-        addButton2.value = "削除";
-        addButton2.type = "button"
+      //   const addButton2 = document.createElement("input");
+      //   addButton2.value = "削除";
+      //   addButton2.type = "button"
 
-        const th3 = document.createElement("th");
-        tr.appendChild(th3);
-        th3.appendChild(addButton1);
-        th3.appendChild(addButton2);
+      //   const th3 = document.createElement("th");
+      //   tr.appendChild(th3);
+      //   th3.appendChild(addButton1);
+      //   th3.appendChild(addButton2);
+
+        console.log(workings);
       });
-    });
+    // });
 
+    // ラジオボタン完了の動き
     const finished = document.getElementById("finished");
     finished.addEventListener("click", event => {
       deleteall();
