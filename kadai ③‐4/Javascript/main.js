@@ -2,7 +2,8 @@
 {
 
   const list = [];
-// リストの追加
+
+  // リストの追加
   addEventListener("submit", e => {
     e.preventDefault();
     const message = document.getElementById("message").value;
@@ -15,7 +16,7 @@
     showTodo();
   });
 
-// 要素の全削除　関数
+  // 要素の全削除　関数
   const deleteall = () => {
     while (container.firstChild) {
       container.removeChild(container.firstChild);
@@ -24,6 +25,7 @@
 
   // ID　コメント　完了　の作成
   const title = () => {
+
     const container = document.getElementById("container");
     const tr = document.createElement("tr");
     container.appendChild(tr);
@@ -46,13 +48,8 @@
       container.appendChild(tr);
       const th1 = document.createElement("th");
       const th2 = document.createElement("th");
-      list.id = index; 
-      // const id =list[index].id
-      // const idtext = id.innerHTML;
-      // th1.appendChild(idtext);
-      // th1.textContent = `${index}`;
-      // th1.textContent = `${list[index].id}`;
-      th1.textContent = list.id;
+      list[index].id = index,
+        th1.textContent = `${list[index].id}`;
       th2.textContent = `${list[index].content}`;
       tr.appendChild(th1);
       tr.appendChild(th2);
@@ -78,9 +75,6 @@
       addButton1.addEventListener("click", event => {
         workingTodo(index);
       });
-      // list.forEach((todo, index) => {
-      //   list.id = index; 
-      // });
 
       console.log(list);
     });
@@ -118,43 +112,70 @@
     // ラジオボタン作業中の動き
     const working = document.getElementById("working");
     working.addEventListener("click", event => {
-      const workings = list.filter(item => item.state === '作業中')
-      // deleteall();
-      // title();
-      // workings.forEach((content, index) => {
-      //   const tr = document.createElement("tr");
-      //   container.appendChild(tr);
-      //   const th1 = document.createElement("th");
-      //   const th2 = document.createElement("th");
-      //   // th1.textContent = `${index}`;
-      //   th1.textContent = list.id;
-      //   th2.textContent = `${workings[index].content}`;
-      //   tr.appendChild(th1);
-      //   tr.appendChild(th2);
+      deleteall();
+      title();
 
-      //   const addButton1 = document.createElement("input");
-      //   addButton1.value = workings[index].state;
-      //   addButton1.type = "button"
+      list.forEach((content, index) => {
+        if (list[index].state === '完了') { return; }
+        const tr = document.createElement("tr");
+        container.appendChild(tr);
+        const th1 = document.createElement("th");
+        const th2 = document.createElement("th");
+        list[index].id = index,
+        th1.textContent = `${list[index].id}`;
+        th2.textContent = `${list[index].content}`;
+        tr.appendChild(th1);
+        tr.appendChild(th2);
 
-      //   const addButton2 = document.createElement("input");
-      //   addButton2.value = "削除";
-      //   addButton2.type = "button"
+        const addButton1 = document.createElement("input");
+        addButton1.value = list[index].state;
+        addButton1.type = "button"
 
-      //   const th3 = document.createElement("th");
-      //   tr.appendChild(th3);
-      //   th3.appendChild(addButton1);
-      //   th3.appendChild(addButton2);
 
-        console.log(workings);
+        const addButton2 = document.createElement("input");
+        addButton2.value = "削除";
+        addButton2.type = "button"
+
+        const th3 = document.createElement("th");
+        tr.appendChild(th3);
+        th3.appendChild(addButton1);
+        th3.appendChild(addButton2);
       });
-    // });
+
+      console.log(workings);
+    });
 
     // ラジオボタン完了の動き
     const finished = document.getElementById("finished");
     finished.addEventListener("click", event => {
       deleteall();
       title();
-      showTodo();
+      list.forEach((content, index) => {
+        if (list[index].state === '作業中') { return; }
+        const tr = document.createElement("tr");
+        container.appendChild(tr);
+        const th1 = document.createElement("th");
+        const th2 = document.createElement("th");
+        list[index].id = index,
+        th1.textContent = `${list[index].id}`;
+        th2.textContent = `${list[index].content}`;
+        tr.appendChild(th1);
+        tr.appendChild(th2);
+
+        const addButton1 = document.createElement("input");
+        addButton1.value = list[index].state;
+        addButton1.type = "button"
+
+
+        const addButton2 = document.createElement("input");
+        addButton2.value = "削除";
+        addButton2.type = "button"
+
+        const th3 = document.createElement("th");
+        tr.appendChild(th3);
+        th3.appendChild(addButton1);
+        th3.appendChild(addButton2);
+      });
     });
   }
 }
