@@ -20,13 +20,12 @@
 
     class Quiz {
 
-      constructor(text1, text2, text3, text4, text5, text6) {
+      constructor(text1, text2, text3, text4, text5,) {
         this.text1 = text1;
         this.text2 = text2;
         this.text3 = text3;
         this.text4 = text4;
         this.text5 = text5;
-        this.text6 = text6;
       }
 
       // クイズ表示の処理
@@ -40,19 +39,13 @@
           answers.removeChild(answers.firstChild);
         }
 
-        const answerslist = [];
-        answerslist.push(this.text5);
-        answerslist.push(...this.text6);
-        console.log(answerslist);
-
-        const shuffleAnswers = shuffle([...answerslist])
+        const shuffleAnswers = shuffle([...this.text5])
         console.log(shuffleAnswers);
         shuffleAnswers.forEach((answer, index) => {
           const li = document.createElement('li')
           li.textContent = answer;
           answers.appendChild(li);
           li.addEventListener('click', () => {
-            console.log(users.results[currentNum].correct_answer);
 
             // 正解数の処理
             if (li.textContent === users.results[currentNum].correct_answer) {
@@ -65,7 +58,6 @@
               result.classList.remove('hidden');
             } else {
               currentNum++;
-              console.log(currentNum);
               Quizs[currentNum].show();
             }
           });
@@ -76,9 +68,8 @@
 
     const Quizs = [];
     for (let i = 0; i < 10; i++) {
-      Quizs.push(new Quiz([i + 1], users.results[i].question, users.results[i].category, users.results[i].difficulty, users.results[i].correct_answer, users.results[i].incorrect_answers));
+      Quizs.push(new Quiz([i + 1], users.results[i].question, users.results[i].category, users.results[i].difficulty, [users.results[i].correct_answer, ...users.results[i].incorrect_answers]));
     }
-    console.log(Quizs);
 
     // シャッフルの処理
     function shuffle(arr) {
